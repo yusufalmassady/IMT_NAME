@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	
+	u8 Local_u8Key;
 	EEpromInit();
 	
 	LCD_vidinit();
@@ -25,28 +25,24 @@ int main(void)
 	//i2c_init_master();
 
 	_delay_ms(500);
-	EEpromWriteByte(1,NO_PASSWORD);
+	//EEpromWriteByte(1,NO_PASSWORD);
 	_delay_ms(500);
     DIO_u8SetPinDirection(DIO_u8PORTA,DIO_u8PIN7,DIO_u8PIN_OUTPUT);
+    DIO_u8SetPinDirection(DIO_u8PORTA,DIO_u8PIN6,DIO_u8PIN_OUTPUT);
 
-
-
+	ASECURITY_voidInitializePassword();
 
 	while (1)
 	{
-	u8 Local_u8Key=NOT_PRESSED;
-	ASECURITY_voidInitializePassword();
+    Local_u8Key=KPD_u8GetPressedKey();
 
 
-	while(Local_u8Key==NOT_PRESSED)
-	{
-		Local_u8Key=KPD_u8GetPressedKey();
-	}
-	LCD_vidwritedata(Local_u8Key);
+
+
     DIO_u8SetPinValue(DIO_u8PORTA,DIO_u8PIN7,DIO_u8PIN_HIGH);
     if(Local_u8Key==OPEN_THE_DOOR)
     {
-        DIO_u8SetPinValue(DIO_u8PORTA,DIO_u8PIN7,DIO_u8PIN_LOW);
+    	ASECURITY_voidCheckPassword();
     }
 	}
 }

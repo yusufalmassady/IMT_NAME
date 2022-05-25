@@ -12,7 +12,7 @@
 #define PASSWORD_EXISTS 'B'
 #define OPEN_THE_DOOR '*'
 void ASECURITY_voidInitializePassword(void);
-
+void ASECURITY_voidCheckPassword();
 
 
 #endif /* SECURITY_H_ */
