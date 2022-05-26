@@ -103,6 +103,7 @@ void ASECURITY_voidCheckPassword()
 					_delay_ms(1000);
 					//UNCHECK A TRY OF THE THREE
 					Local_u8PassLoopCounter++;
+					break;
 				}
 
 			}
